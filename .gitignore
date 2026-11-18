@@ -1,0 +1,29 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments & secrets
+.venv/
+venv/
+.env
+kaggle.json
+
+# Test, coverage & logs
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+
+# Notebook checkpoints & CatBoost artifacts
+.ipynb_checkpoints/
+catboost_info/
+
+# Raw & processed datasets (never commit bulk data)
+data/*.csv
+data/raw/*.csv
+data/raw/*.parquet
+data/raw/*.zip
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep

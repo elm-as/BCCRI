@@ -1,0 +1,1356 @@
+{
+  "dataset": {
+    "n_rows": 10000,
+    "n_cols": 18,
+    "churn_rate": 0.2038,
+    "zero_balance_rate": 0.3617
+  },
+  "leakage_audit": {
+    "excluded_ids": [
+      "RowNumber",
+      "CustomerId",
+      "Surname"
+    ],
+    "mandatory_excluded": [
+      "Complain"
+    ],
+    "audit_ablated": [
+      "Satisfaction Score"
+    ],
+    "complain_pearson_r": 0.995693,
+    "satisfaction_pearson_r": -0.005849,
+    "satisfaction_summary": {
+      "mean_overall": 3.0138,
+      "mean_churned": 2.9975466143277725,
+      "mean_retained": 3.017960311479528,
+      "min_score_churn_rate": 0.19637610186092067,
+      "max_score_churn_rate": 0.217974180734856,
+      "pearson_r_exited": -0.005849198648614125
+    },
+    "audit_table": [
+      {
+        "feature_name": "Complain",
+        "pearson_corr": 0.9956925015718894,
+        "mutual_info": 0.49572619303301657,
+        "univariate_auc": 0.9983910620896648,
+        "is_flagged_leakage": true,
+        "disposition": "MANDATORY_EXCLUDE_POST_EVENT_LEAKAGE"
+      },
+      {
+        "feature_name": "Age",
+        "pearson_corr": 0.2852964638406683,
+        "mutual_info": 0.06855707616606921,
+        "univariate_auc": 0.7320756888855279,
+        "is_flagged_leakage": false,
+        "disposition": "INCLUDE_STATIC_CONTEXT"
+      },
+      {
+        "feature_name": "IsActiveMember",
+        "pearson_corr": -0.15635563349849274,
+        "mutual_info": 0.01645372921580046,
+        "univariate_auc": 0.596991711024988,
+        "is_flagged_leakage": false,
+        "disposition": "INCLUDE_ACTIONABLE_LEVER"
+      },
+      {
+        "feature_name": "Balance",
+        "pearson_corr": 0.11857690046280435,
+        "mutual_info": 0.007427178272238155,
+        "univariate_auc": 0.5777668870878719,
+        "is_flagged_leakage": false,
+        "disposition": "INCLUDE_ACTIONABLE_LEVER"
+      },
+      {
+        "feature_name": "Gender",
+        "pearson_corr": -0.106266533012529,
+        "mutual_info": 0.005712187206210917,
+        "univariate_auc": 0.5656686670440009,
+        "is_flagged_leakage": false,
+        "disposition": "INCLUDE_STATIC_CONTEXT"
+      },
+      {
+        "feature_name": "NumOfProducts",
+        "pearson_corr": -0.04761061414947442,
+        "mutual_info": 0.07158542972638293,
+        "univariate_auc": 0.5786699598571535,
+        "is_flagged_leakage": false,
+        "disposition": "INCLUDE_ACTIONABLE_LEVER"
+      },
+      {
+        "feature_name": "Geography",
+        "pearson_corr": 0.03571249985775272,
+        "mutual_info": 0.021771115326325585,
+        "univariate_auc": 0.5346904156323417,
+        "is_flagged_leakage": false,
+        "disposition": "INCLUDE_STATIC_CONTEXT"
+      },
+      {
+        "feature_name": "CreditScore",
+        "pearson_corr": -0.026771448055272037,
+        "mutual_info": 0.004292807854705094,
+        "univariate_auc": 0.5162919331620279,
+        "is_flagged_leakage": false,
+        "disposition": "INCLUDE_STATIC_CONTEXT"
+      },
+      {
+        "feature_name": "Tenure",
+        "pearson_corr": -0.01365579911281955,
+        "mutual_info": 0.0,
+        "univariate_auc": 0.5097612368950052,
+        "is_flagged_leakage": false,
+        "disposition": "INCLUDE_STATIC_CONTEXT"
+      },
+      {
+        "feature_name": "EstimatedSalary",
+        "pearson_corr": 0.012489719907641061,
+        "mutual_info": 0.0027045948227819583,
+        "univariate_auc": 0.5089184893641655,
+        "is_flagged_leakage": false,
+        "disposition": "INCLUDE_STATIC_CONTEXT"
+      },
+      {
+        "feature_name": "Card Type",
+        "pearson_corr": -0.010860511090026802,
+        "mutual_info": 0.010275224029840935,
+        "univariate_auc": 0.5078089632978046,
+        "is_flagged_leakage": false,
+        "disposition": "INCLUDE_ACTIONABLE_LEVER"
+      },
+      {
+        "feature_name": "HasCrCard",
+        "pearson_corr": -0.006976070976576949,
+        "mutual_info": 0.007110296455365095,
+        "univariate_auc": 0.5039517045971301,
+        "is_flagged_leakage": false,
+        "disposition": "INCLUDE_ACTIONABLE_LEVER"
+      },
+      {
+        "feature_name": "Satisfaction Score",
+        "pearson_corr": -0.005849198648614125,
+        "mutual_info": 0.0020872185596532145,
+        "univariate_auc": 0.504190945701848,
+        "is_flagged_leakage": false,
+        "disposition": "AUDIT_ABLATED_EXCLUDE_PRIMARY"
+      },
+      {
+        "feature_name": "Point Earned",
+        "pearson_corr": -0.00462817312498375,
+        "mutual_info": 0.0062675195581385346,
+        "univariate_auc": 0.5028865976817661,
+        "is_flagged_leakage": false,
+        "disposition": "INCLUDE_ACTIONABLE_LEVER"
+      }
+    ],
+    "ablation_table": [
+      {
+        "scenario_name": "leaky_with_complain",
+        "model_name": "LogisticRegression",
+        "feature_count": 14,
+        "roc_auc": 0.9989358801707522,
+        "pr_auc": 0.9962734366035028,
+        "f1_score": 0.9965703086722195,
+        "brier_score": 0.0014137499685256418
+      },
+      {
+        "scenario_name": "leaky_with_complain",
+        "model_name": "LightGBM",
+        "feature_count": 14,
+        "roc_auc": 0.9991191599745504,
+        "pr_auc": 0.9978769533560246,
+        "f1_score": 0.9965703086722195,
+        "brier_score": 0.0013943681020862253
+      },
+      {
+        "scenario_name": "no_complain_with_satisfaction",
+        "model_name": "LogisticRegression",
+        "feature_count": 13,
+        "roc_auc": 0.8322726030095358,
+        "pr_auc": 0.6223107159452068,
+        "f1_score": 0.5755364806866953,
+        "brier_score": 0.1153721041513983
+      },
+      {
+        "scenario_name": "no_complain_with_satisfaction",
+        "model_name": "LightGBM",
+        "feature_count": 13,
+        "roc_auc": 0.8634059500980985,
+        "pr_auc": 0.7005719491717944,
+        "f1_score": 0.6223776223776224,
+        "brier_score": 0.10236436644944003
+      },
+      {
+        "scenario_name": "strict_leak_free",
+        "model_name": "LogisticRegression",
+        "feature_count": 12,
+        "roc_auc": 0.8323734870172079,
+        "pr_auc": 0.6223399534052898,
+        "f1_score": 0.5770750988142292,
+        "brier_score": 0.11536525510016672
+      },
+      {
+        "scenario_name": "strict_leak_free",
+        "model_name": "LightGBM",
+        "feature_count": 12,
+        "roc_auc": 0.8630205941420964,
+        "pr_auc": 0.6994230358712771,
+        "f1_score": 0.6222784810126583,
+        "brier_score": 0.10250040583538682
+      }
+    ]
+  },
+  "best_model_name": "CatBoost",
+  "model_benchmark": [
+    {
+      "model_name": "CatBoost",
+      "fold_aucs": [
+        0.862853,
+        0.863018,
+        0.864894,
+        0.877505,
+        0.87951
+      ],
+      "oof_roc_auc": 0.869421,
+      "oof_pr_auc": 0.712621,
+      "oof_f1_default": 0.587379,
+      "oof_f1_optimal": 0.635922,
+      "optimal_threshold": 0.31,
+      "oof_brier": 0.09997,
+      "oof_ece": 0.006775,
+      "calibration_method": "uncalibrated",
+      "calibrated_brier": 0.09997,
+      "calibrated_ece": 0.006775
+    },
+    {
+      "model_name": "LightGBM",
+      "fold_aucs": [
+        0.859056,
+        0.855474,
+        0.858374,
+        0.871266,
+        0.872096
+      ],
+      "oof_roc_auc": 0.863021,
+      "oof_pr_auc": 0.699423,
+      "oof_f1_default": 0.571604,
+      "oof_f1_optimal": 0.622278,
+      "optimal_threshold": 0.34,
+      "oof_brier": 0.1025,
+      "oof_ece": 0.010725,
+      "calibration_method": "platt_sigmoid",
+      "calibrated_brier": 0.102491,
+      "calibrated_ece": 0.008449
+    },
+    {
+      "model_name": "XGBoost",
+      "fold_aucs": [
+        0.859119,
+        0.852721,
+        0.858738,
+        0.871799,
+        0.873363
+      ],
+      "oof_roc_auc": 0.862844,
+      "oof_pr_auc": 0.699377,
+      "oof_f1_default": 0.574741,
+      "oof_f1_optimal": 0.620242,
+      "optimal_threshold": 0.27,
+      "oof_brier": 0.102479,
+      "oof_ece": 0.011178,
+      "calibration_method": "uncalibrated",
+      "calibrated_brier": 0.102479,
+      "calibrated_ece": 0.011178
+    },
+    {
+      "model_name": "LogisticRegression",
+      "fold_aucs": [
+        0.826239,
+        0.83448,
+        0.817753,
+        0.838112,
+        0.846466
+      ],
+      "oof_roc_auc": 0.832373,
+      "oof_pr_auc": 0.62234,
+      "oof_f1_default": 0.495214,
+      "oof_f1_optimal": 0.577075,
+      "optimal_threshold": 0.28,
+      "oof_brier": 0.115365,
+      "oof_ece": 0.006187,
+      "calibration_method": "uncalibrated",
+      "calibrated_brier": 0.115365,
+      "calibrated_ece": 0.006187
+    }
+  ],
+  "shap_lever_partition": {
+    "actionable_share": 0.522166,
+    "static_share": 0.477834,
+    "feature_mean_abs_shap": {
+      "IsActiveMember": 0.37946,
+      "NumOfProducts": 0.786818,
+      "Balance": 0.21786,
+      "HasCrCard": 0.010449,
+      "Card Type": 0.027123,
+      "Point Earned": 0.05223,
+      "CreditScore": 0.047682,
+      "Geography": 0.204245,
+      "Gender": 0.236781,
+      "Age": 0.758438,
+      "Tenure": 0.035093,
+      "EstimatedSalary": 0.066562
+    },
+    "crm_segments": [
+      {
+        "segment_name": "Healthy / Low-Risk Monitor",
+        "client_count": 8145,
+        "client_share": 0.8145,
+        "mean_churn_prob": 0.09921087310835351,
+        "actual_churn_rate": 0.09907918968692449,
+        "mean_clv_eur": 2418.3364041292043,
+        "total_at_risk_clv_eur": 2319618.6576380087,
+        "recommended_action": "Passive monitoring (no costly incentive)"
+      },
+      {
+        "segment_name": "Structural Demographic Risk",
+        "client_count": 717,
+        "client_share": 0.0717,
+        "mean_churn_prob": 0.684004220534379,
+        "actual_churn_rate": 0.6959553695955369,
+        "mean_clv_eur": 3487.065909922267,
+        "total_at_risk_clv_eur": 1691948.2747347462,
+        "recommended_action": "Low-cost automated digital self-service retention"
+      },
+      {
+        "segment_name": "Product-Depth Reset",
+        "client_count": 913,
+        "client_share": 0.0913,
+        "mean_churn_prob": 0.6445312556196564,
+        "actual_churn_rate": 0.6670317634173056,
+        "mean_clv_eur": 2285.1101881825844,
+        "total_at_risk_clv_eur": 1396617.6441755209,
+        "recommended_action": "Portfolio consolidation review to 2-product sweet spot"
+      },
+      {
+        "segment_name": "Dormancy Reactivation",
+        "client_count": 139,
+        "client_share": 0.0139,
+        "mean_churn_prob": 0.6294859774384782,
+        "actual_churn_rate": 0.60431654676259,
+        "mean_clv_eur": 2727.250583779889,
+        "total_at_risk_clv_eur": 227708.10621484765,
+        "recommended_action": "Omnichannel engagement nudge & loyalty point bonus"
+      },
+      {
+        "segment_name": "Deposit & Card Retention",
+        "client_count": 86,
+        "client_share": 0.0086,
+        "mean_churn_prob": 0.504796339062936,
+        "actual_churn_rate": 0.45348837209302323,
+        "mean_clv_eur": 4530.949635690815,
+        "total_at_risk_clv_eur": 200560.9541909111,
+        "recommended_action": "Targeted deposit yield match or credit-card fee waiver"
+      }
+    ]
+  },
+  "retention_roi": {
+    "optimal_strategy": "ev_lever_targeted_outreach",
+    "optimal_outreach_fraction": 0.25,
+    "optimal_targeted_clients": 2500,
+    "optimal_expected_saved_clients": 179.86,
+    "optimal_gross_clv_saved_eur": 594455.39,
+    "optimal_campaign_cost_eur": 134440.0,
+    "optimal_net_roi_eur": 460015.39,
+    "optimal_roi_pct": 342.17,
+    "risk_ranked_peak_net_roi_eur": 440086.65,
+    "risk_ranked_peak_fraction": 0.3,
+    "random_at_optimal_fraction_net_roi_eur": 65905.24,
+    "ev_gain_over_risk_ranked_eur": 19928.74,
+    "policy_curve": [
+      {
+        "strategy_name": "random_outreach",
+        "outreach_fraction": 0.05,
+        "min_score_cutoff": 0.0,
+        "targeted_clients": 500,
+        "expected_saved_clients": 12.376000000000003,
+        "gross_clv_saved_eur": 33788.54893619684,
+        "campaign_cost_eur": 20607.5,
+        "net_roi_eur": 13181.048936196843,
+        "roi_pct": 63.96238717067496
+      },
+      {
+        "strategy_name": "risk_ranked_outreach",
+        "outreach_fraction": 0.05,
+        "min_score_cutoff": 0.8301939329312432,
+        "targeted_clients": 500,
+        "expected_saved_clients": 79.27000000000001,
+        "gross_clv_saved_eur": 230065.96369108363,
+        "campaign_cost_eur": 33560.0,
+        "net_roi_eur": 196505.96369108363,
+        "roi_pct": 585.5362446099035
+      },
+      {
+        "strategy_name": "ev_lever_targeted_outreach",
+        "outreach_fraction": 0.05,
+        "min_score_cutoff": 302.113066273691,
+        "targeted_clients": 500,
+        "expected_saved_clients": 79.76000000000002,
+        "gross_clv_saved_eur": 315387.4431446502,
+        "campaign_cost_eur": 41070.0,
+        "net_roi_eur": 274317.4431446502,
+        "roi_pct": 667.9265720590461
+      },
+      {
+        "strategy_name": "random_outreach",
+        "outreach_fraction": 0.1,
+        "min_score_cutoff": 0.0,
+        "targeted_clients": 1000,
+        "expected_saved_clients": 24.752000000000006,
+        "gross_clv_saved_eur": 67577.09787239369,
+        "campaign_cost_eur": 41215.0,
+        "net_roi_eur": 26362.097872393686,
+        "roi_pct": 63.96238717067496
+      },
+      {
+        "strategy_name": "risk_ranked_outreach",
+        "outreach_fraction": 0.1,
+        "min_score_cutoff": 0.5971919402971214,
+        "targeted_clients": 1000,
+        "expected_saved_clients": 131.81,
+        "gross_clv_saved_eur": 363077.788103978,
+        "campaign_cost_eur": 65190.0,
+        "net_roi_eur": 297887.788103978,
+        "roi_pct": 456.95319543484885
+      },
+      {
+        "strategy_name": "ev_lever_targeted_outreach",
+        "outreach_fraction": 0.1,
+        "min_score_cutoff": 154.13501589031804,
+        "targeted_clients": 1000,
+        "expected_saved_clients": 123.79,
+        "gross_clv_saved_eur": 468148.1681950274,
+        "campaign_cost_eur": 71400.0,
+        "net_roi_eur": 396748.1681950274,
+        "roi_pct": 555.6697033543801
+      },
+      {
+        "strategy_name": "random_outreach",
+        "outreach_fraction": 0.15,
+        "min_score_cutoff": 0.0,
+        "targeted_clients": 1500,
+        "expected_saved_clients": 37.12800000000001,
+        "gross_clv_saved_eur": 101365.64680859052,
+        "campaign_cost_eur": 61822.5,
+        "net_roi_eur": 39543.14680859052,
+        "roi_pct": 63.96238717067495
+      },
+      {
+        "strategy_name": "risk_ranked_outreach",
+        "outreach_fraction": 0.15,
+        "min_score_cutoff": 0.4378712864031272,
+        "targeted_clients": 1500,
+        "expected_saved_clients": 180.38,
+        "gross_clv_saved_eur": 487842.3862854938,
+        "campaign_cost_eur": 100600.0,
+        "net_roi_eur": 387242.3862854938,
+        "roi_pct": 384.93278954820454
+      },
+      {
+        "strategy_name": "ev_lever_targeted_outreach",
+        "outreach_fraction": 0.15,
+        "min_score_cutoff": 35.702273745078514,
+        "targeted_clients": 1500,
+        "expected_saved_clients": 154.39000000000001,
+        "gross_clv_saved_eur": 539406.9745714676,
+        "campaign_cost_eur": 95860.0,
+        "net_roi_eur": 443546.9745714676,
+        "roi_pct": 462.7028735358519
+      },
+      {
+        "strategy_name": "random_outreach",
+        "outreach_fraction": 0.2,
+        "min_score_cutoff": 0.0,
+        "targeted_clients": 2000,
+        "expected_saved_clients": 49.50400000000001,
+        "gross_clv_saved_eur": 135154.19574478737,
+        "campaign_cost_eur": 82430.0,
+        "net_roi_eur": 52724.19574478737,
+        "roi_pct": 63.96238717067496
+      },
+      {
+        "strategy_name": "risk_ranked_outreach",
+        "outreach_fraction": 0.2,
+        "min_score_cutoff": 0.3230953516284952,
+        "targeted_clients": 2000,
+        "expected_saved_clients": 209.32,
+        "gross_clv_saved_eur": 565372.6268461933,
+        "campaign_cost_eur": 132150.0,
+        "net_roi_eur": 433222.62684619334,
+        "roi_pct": 327.8264296982167
+      },
+      {
+        "strategy_name": "ev_lever_targeted_outreach",
+        "outreach_fraction": 0.2,
+        "min_score_cutoff": 11.51343272777337,
+        "targeted_clients": 2000,
+        "expected_saved_clients": 167.56,
+        "gross_clv_saved_eur": 570364.0982178326,
+        "campaign_cost_eur": 115320.0,
+        "net_roi_eur": 455044.0982178326,
+        "roi_pct": 394.59252360200543
+      },
+      {
+        "strategy_name": "random_outreach",
+        "outreach_fraction": 0.25,
+        "min_score_cutoff": 0.0,
+        "targeted_clients": 2500,
+        "expected_saved_clients": 61.88000000000001,
+        "gross_clv_saved_eur": 168942.7446809842,
+        "campaign_cost_eur": 103037.5,
+        "net_roi_eur": 65905.24468098421,
+        "roi_pct": 63.96238717067496
+      },
+      {
+        "strategy_name": "risk_ranked_outreach",
+        "outreach_fraction": 0.25,
+        "min_score_cutoff": 0.2551826819315744,
+        "targeted_clients": 2500,
+        "expected_saved_clients": 217.17000000000002,
+        "gross_clv_saved_eur": 588597.5353575102,
+        "campaign_cost_eur": 149650.0,
+        "net_roi_eur": 438947.5353575102,
+        "roi_pct": 293.3160944587439
+      },
+      {
+        "strategy_name": "ev_lever_targeted_outreach",
+        "outreach_fraction": 0.25,
+        "min_score_cutoff": 1.1651237344920347,
+        "targeted_clients": 2500,
+        "expected_saved_clients": 179.85999999999999,
+        "gross_clv_saved_eur": 594455.3913030177,
+        "campaign_cost_eur": 134440.0,
+        "net_roi_eur": 460015.39130301774,
+        "roi_pct": 342.1715198624054
+      },
+      {
+        "strategy_name": "random_outreach",
+        "outreach_fraction": 0.3,
+        "min_score_cutoff": 0.0,
+        "targeted_clients": 3000,
+        "expected_saved_clients": 74.25600000000001,
+        "gross_clv_saved_eur": 202731.29361718104,
+        "campaign_cost_eur": 123645.0,
+        "net_roi_eur": 79086.29361718104,
+        "roi_pct": 63.96238717067495
+      },
+      {
+        "strategy_name": "risk_ranked_outreach",
+        "outreach_fraction": 0.3,
+        "min_score_cutoff": 0.20488203980744812,
+        "targeted_clients": 3000,
+        "expected_saved_clients": 223.17000000000002,
+        "gross_clv_saved_eur": 607236.6467366255,
+        "campaign_cost_eur": 167150.0,
+        "net_roi_eur": 440086.64673662547,
+        "roi_pct": 263.2884515325309
+      },
+      {
+        "strategy_name": "ev_lever_targeted_outreach",
+        "outreach_fraction": 0.3,
+        "min_score_cutoff": -7.370162749860022,
+        "targeted_clients": 3000,
+        "expected_saved_clients": 190.08,
+        "gross_clv_saved_eur": 610564.6597253771,
+        "campaign_cost_eur": 153960.0,
+        "net_roi_eur": 456604.6597253771,
+        "roi_pct": 296.5735643838511
+      },
+      {
+        "strategy_name": "random_outreach",
+        "outreach_fraction": 0.35,
+        "min_score_cutoff": 0.0,
+        "targeted_clients": 3500,
+        "expected_saved_clients": 86.632,
+        "gross_clv_saved_eur": 236519.84255337788,
+        "campaign_cost_eur": 144252.5,
+        "net_roi_eur": 92267.34255337788,
+        "roi_pct": 63.96238717067495
+      },
+      {
+        "strategy_name": "risk_ranked_outreach",
+        "outreach_fraction": 0.35,
+        "min_score_cutoff": 0.16687626023628385,
+        "targeted_clients": 3500,
+        "expected_saved_clients": 227.51999999999998,
+        "gross_clv_saved_eur": 619941.939917181,
+        "campaign_cost_eur": 184650.0,
+        "net_roi_eur": 435291.93991718104,
+        "roi_pct": 235.73893307185543
+      },
+      {
+        "strategy_name": "ev_lever_targeted_outreach",
+        "outreach_fraction": 0.35,
+        "min_score_cutoff": -13.10055092091351,
+        "targeted_clients": 3500,
+        "expected_saved_clients": 196.06000000000003,
+        "gross_clv_saved_eur": 623502.9249284293,
+        "campaign_cost_eur": 172450.0,
+        "net_roi_eur": 451052.9249284293,
+        "roi_pct": 261.55576974684215
+      },
+      {
+        "strategy_name": "random_outreach",
+        "outreach_fraction": 0.4,
+        "min_score_cutoff": 0.0,
+        "targeted_clients": 4000,
+        "expected_saved_clients": 99.00800000000002,
+        "gross_clv_saved_eur": 270308.39148957474,
+        "campaign_cost_eur": 164860.0,
+        "net_roi_eur": 105448.39148957474,
+        "roi_pct": 63.96238717067496
+      },
+      {
+        "strategy_name": "risk_ranked_outreach",
+        "outreach_fraction": 0.4,
+        "min_score_cutoff": 0.1381458857567998,
+        "targeted_clients": 4000,
+        "expected_saved_clients": 230.87,
+        "gross_clv_saved_eur": 629663.6822078188,
+        "campaign_cost_eur": 202150.0,
+        "net_roi_eur": 427513.68220781884,
+        "roi_pct": 211.48339461183224
+      },
+      {
+        "strategy_name": "ev_lever_targeted_outreach",
+        "outreach_fraction": 0.4,
+        "min_score_cutoff": -17.198071960954998,
+        "targeted_clients": 4000,
+        "expected_saved_clients": 200.12,
+        "gross_clv_saved_eur": 632920.4554984567,
+        "campaign_cost_eur": 190580.0,
+        "net_roi_eur": 442340.4554984567,
+        "roi_pct": 232.10224341402915
+      },
+      {
+        "strategy_name": "random_outreach",
+        "outreach_fraction": 0.45,
+        "min_score_cutoff": 0.0,
+        "targeted_clients": 4500,
+        "expected_saved_clients": 111.38400000000001,
+        "gross_clv_saved_eur": 304096.9404257716,
+        "campaign_cost_eur": 185467.5,
+        "net_roi_eur": 118629.44042577158,
+        "roi_pct": 63.96238717067496
+      },
+      {
+        "strategy_name": "risk_ranked_outreach",
+        "outreach_fraction": 0.45,
+        "min_score_cutoff": 0.1137258437489265,
+        "targeted_clients": 4500,
+        "expected_saved_clients": 234.17,
+        "gross_clv_saved_eur": 638826.2958648833,
+        "campaign_cost_eur": 219650.0,
+        "net_roi_eur": 419176.29586488334,
+        "roi_pct": 190.83828630315654
+      },
+      {
+        "strategy_name": "ev_lever_targeted_outreach",
+        "outreach_fraction": 0.45,
+        "min_score_cutoff": -20.56782686402891,
+        "targeted_clients": 4500,
+        "expected_saved_clients": 204.14,
+        "gross_clv_saved_eur": 642358.4398360424,
+        "campaign_cost_eur": 208630.0,
+        "net_roi_eur": 433728.43983604235,
+        "roi_pct": 207.89361061977777
+      },
+      {
+        "strategy_name": "random_outreach",
+        "outreach_fraction": 0.5,
+        "min_score_cutoff": 0.0,
+        "targeted_clients": 5000,
+        "expected_saved_clients": 123.76000000000002,
+        "gross_clv_saved_eur": 337885.4893619684,
+        "campaign_cost_eur": 206075.0,
+        "net_roi_eur": 131810.48936196842,
+        "roi_pct": 63.96238717067496
+      },
+      {
+        "strategy_name": "risk_ranked_outreach",
+        "outreach_fraction": 0.5,
+        "min_score_cutoff": 0.09623393438730463,
+        "targeted_clients": 5000,
+        "expected_saved_clients": 236.57000000000002,
+        "gross_clv_saved_eur": 645947.714704218,
+        "campaign_cost_eur": 237150.0,
+        "net_roi_eur": 408797.714704218,
+        "roi_pct": 172.37938633953954
+      },
+      {
+        "strategy_name": "ev_lever_targeted_outreach",
+        "outreach_fraction": 0.5,
+        "min_score_cutoff": -23.043937662538216,
+        "targeted_clients": 5000,
+        "expected_saved_clients": 208.34,
+        "gross_clv_saved_eur": 651695.1323050067,
+        "campaign_cost_eur": 226820.0,
+        "net_roi_eur": 424875.13230500673,
+        "roi_pct": 187.31819606075598
+      },
+      {
+        "strategy_name": "random_outreach",
+        "outreach_fraction": 0.55,
+        "min_score_cutoff": 0.0,
+        "targeted_clients": 5500,
+        "expected_saved_clients": 136.13600000000002,
+        "gross_clv_saved_eur": 371674.0382981653,
+        "campaign_cost_eur": 226682.50000000003,
+        "net_roi_eur": 144991.53829816528,
+        "roi_pct": 63.96238717067496
+      },
+      {
+        "strategy_name": "risk_ranked_outreach",
+        "outreach_fraction": 0.55,
+        "min_score_cutoff": 0.08246311850337487,
+        "targeted_clients": 5500,
+        "expected_saved_clients": 238.67,
+        "gross_clv_saved_eur": 652289.7048815157,
+        "campaign_cost_eur": 254650.0,
+        "net_roi_eur": 397639.7048815157,
+        "roi_pct": 156.15146470901854
+      },
+      {
+        "strategy_name": "ev_lever_targeted_outreach",
+        "outreach_fraction": 0.55,
+        "min_score_cutoff": -25.558533312144576,
+        "targeted_clients": 5500,
+        "expected_saved_clients": 210.99,
+        "gross_clv_saved_eur": 656599.2338881686,
+        "campaign_cost_eur": 244560.0,
+        "net_roi_eur": 412039.2338881686,
+        "roi_pct": 168.48185880281673
+      },
+      {
+        "strategy_name": "random_outreach",
+        "outreach_fraction": 0.6,
+        "min_score_cutoff": 0.0,
+        "targeted_clients": 6000,
+        "expected_saved_clients": 148.51200000000003,
+        "gross_clv_saved_eur": 405462.5872343621,
+        "campaign_cost_eur": 247290.0,
+        "net_roi_eur": 158172.5872343621,
+        "roi_pct": 63.96238717067495
+      },
+      {
+        "strategy_name": "risk_ranked_outreach",
+        "outreach_fraction": 0.6,
+        "min_score_cutoff": 0.06974904382746241,
+        "targeted_clients": 6000,
+        "expected_saved_clients": 240.77,
+        "gross_clv_saved_eur": 659096.1505615569,
+        "campaign_cost_eur": 272150.0,
+        "net_roi_eur": 386946.1505615569,
+        "roi_pct": 142.18120542405177
+      },
+      {
+        "strategy_name": "ev_lever_targeted_outreach",
+        "outreach_fraction": 0.6,
+        "min_score_cutoff": -27.713444306502456,
+        "targeted_clients": 6000,
+        "expected_saved_clients": 213.98000000000002,
+        "gross_clv_saved_eur": 660467.0103901919,
+        "campaign_cost_eur": 262530.0,
+        "net_roi_eur": 397937.0103901919,
+        "roi_pct": 151.57772840825504
+      },
+      {
+        "strategy_name": "random_outreach",
+        "outreach_fraction": 0.65,
+        "min_score_cutoff": 0.0,
+        "targeted_clients": 6500,
+        "expected_saved_clients": 160.88800000000003,
+        "gross_clv_saved_eur": 439251.136170559,
+        "campaign_cost_eur": 267897.5,
+        "net_roi_eur": 171353.63617055898,
+        "roi_pct": 63.96238717067497
+      },
+      {
+        "strategy_name": "risk_ranked_outreach",
+        "outreach_fraction": 0.65,
+        "min_score_cutoff": 0.059296597005477,
+        "targeted_clients": 6500,
+        "expected_saved_clients": 242.32000000000005,
+        "gross_clv_saved_eur": 664333.4951397461,
+        "campaign_cost_eur": 289650.0,
+        "net_roi_eur": 374683.4951397461,
+        "roi_pct": 129.3573261314504
+      },
+      {
+        "strategy_name": "ev_lever_targeted_outreach",
+        "outreach_fraction": 0.65,
+        "min_score_cutoff": -29.729485450365004,
+        "targeted_clients": 6500,
+        "expected_saved_clients": 217.31,
+        "gross_clv_saved_eur": 664834.2178097051,
+        "campaign_cost_eur": 280540.0,
+        "net_roi_eur": 384294.21780970506,
+        "roi_pct": 136.98375198178695
+      },
+      {
+        "strategy_name": "random_outreach",
+        "outreach_fraction": 0.7,
+        "min_score_cutoff": 0.0,
+        "targeted_clients": 7000,
+        "expected_saved_clients": 173.264,
+        "gross_clv_saved_eur": 473039.68510675576,
+        "campaign_cost_eur": 288505.0,
+        "net_roi_eur": 184534.68510675576,
+        "roi_pct": 63.96238717067495
+      },
+      {
+        "strategy_name": "risk_ranked_outreach",
+        "outreach_fraction": 0.7,
+        "min_score_cutoff": 0.04903343467476888,
+        "targeted_clients": 7000,
+        "expected_saved_clients": 243.72,
+        "gross_clv_saved_eur": 668504.3504761659,
+        "campaign_cost_eur": 307150.0,
+        "net_roi_eur": 361354.3504761659,
+        "roi_pct": 117.64751765462019
+      },
+      {
+        "strategy_name": "ev_lever_targeted_outreach",
+        "outreach_fraction": 0.7,
+        "min_score_cutoff": -31.790682843465504,
+        "targeted_clients": 7000,
+        "expected_saved_clients": 220.72000000000003,
+        "gross_clv_saved_eur": 666968.6849805554,
+        "campaign_cost_eur": 298620.0,
+        "net_roi_eur": 368348.68498055544,
+        "roi_pct": 123.35030640297215
+      },
+      {
+        "strategy_name": "random_outreach",
+        "outreach_fraction": 0.75,
+        "min_score_cutoff": 0.0,
+        "targeted_clients": 7500,
+        "expected_saved_clients": 185.64000000000004,
+        "gross_clv_saved_eur": 506828.23404295265,
+        "campaign_cost_eur": 309112.5,
+        "net_roi_eur": 197715.73404295265,
+        "roi_pct": 63.96238717067496
+      },
+      {
+        "strategy_name": "risk_ranked_outreach",
+        "outreach_fraction": 0.75,
+        "min_score_cutoff": 0.03918092607288967,
+        "targeted_clients": 7500,
+        "expected_saved_clients": 244.72000000000003,
+        "gross_clv_saved_eur": 671348.7789636487,
+        "campaign_cost_eur": 324650.0,
+        "net_roi_eur": 346698.7789636487,
+        "roi_pct": 106.79155366198944
+      },
+      {
+        "strategy_name": "ev_lever_targeted_outreach",
+        "outreach_fraction": 0.75,
+        "min_score_cutoff": -33.38122493822833,
+        "targeted_clients": 7500,
+        "expected_saved_clients": 223.94000000000003,
+        "gross_clv_saved_eur": 668393.9149666324,
+        "campaign_cost_eur": 316540.0,
+        "net_roi_eur": 351853.9149666324,
+        "roi_pct": 111.15622511108624
+      },
+      {
+        "strategy_name": "random_outreach",
+        "outreach_fraction": 0.8,
+        "min_score_cutoff": 0.0,
+        "targeted_clients": 8000,
+        "expected_saved_clients": 198.01600000000005,
+        "gross_clv_saved_eur": 540616.7829791495,
+        "campaign_cost_eur": 329720.0,
+        "net_roi_eur": 210896.7829791495,
+        "roi_pct": 63.96238717067496
+      },
+      {
+        "strategy_name": "risk_ranked_outreach",
+        "outreach_fraction": 0.8,
+        "min_score_cutoff": 0.03158407188138644,
+        "targeted_clients": 8000,
+        "expected_saved_clients": 245.87,
+        "gross_clv_saved_eur": 673843.4393141288,
+        "campaign_cost_eur": 342150.0,
+        "net_roi_eur": 331693.43931412883,
+        "roi_pct": 96.94386652466136
+      },
+      {
+        "strategy_name": "ev_lever_targeted_outreach",
+        "outreach_fraction": 0.8,
+        "min_score_cutoff": -34.08851402438944,
+        "targeted_clients": 8000,
+        "expected_saved_clients": 225.71,
+        "gross_clv_saved_eur": 668990.9934555212,
+        "campaign_cost_eur": 334170.0,
+        "net_roi_eur": 334820.9934555212,
+        "roi_pct": 100.19480906590094
+      },
+      {
+        "strategy_name": "random_outreach",
+        "outreach_fraction": 0.85,
+        "min_score_cutoff": 0.0,
+        "targeted_clients": 8500,
+        "expected_saved_clients": 210.39200000000002,
+        "gross_clv_saved_eur": 574405.3319153463,
+        "campaign_cost_eur": 350327.5,
+        "net_roi_eur": 224077.83191534632,
+        "roi_pct": 63.96238717067496
+      },
+      {
+        "strategy_name": "risk_ranked_outreach",
+        "outreach_fraction": 0.85,
+        "min_score_cutoff": 0.024683975130763248,
+        "targeted_clients": 8500,
+        "expected_saved_clients": 246.26999999999995,
+        "gross_clv_saved_eur": 674510.1881116254,
+        "campaign_cost_eur": 359650.0,
+        "net_roi_eur": 314860.1881116254,
+        "roi_pct": 87.54627780109145
+      },
+      {
+        "strategy_name": "ev_lever_targeted_outreach",
+        "outreach_fraction": 0.85,
+        "min_score_cutoff": -34.447181404464175,
+        "targeted_clients": 8500,
+        "expected_saved_clients": 226.9,
+        "gross_clv_saved_eur": 669491.8680393003,
+        "campaign_cost_eur": 351820.0,
+        "net_roi_eur": 317671.8680393003,
+        "roi_pct": 90.2938627819056
+      },
+      {
+        "strategy_name": "random_outreach",
+        "outreach_fraction": 0.9,
+        "min_score_cutoff": 0.0,
+        "targeted_clients": 9000,
+        "expected_saved_clients": 222.76800000000003,
+        "gross_clv_saved_eur": 608193.8808515432,
+        "campaign_cost_eur": 370935.0,
+        "net_roi_eur": 237258.88085154316,
+        "roi_pct": 63.96238717067496
+      },
+      {
+        "strategy_name": "risk_ranked_outreach",
+        "outreach_fraction": 0.9,
+        "min_score_cutoff": 0.01755839661543567,
+        "targeted_clients": 9000,
+        "expected_saved_clients": 246.91999999999996,
+        "gross_clv_saved_eur": 675418.6322887515,
+        "campaign_cost_eur": 377150.0,
+        "net_roi_eur": 298268.63228875154,
+        "roi_pct": 79.08488195379863
+      },
+      {
+        "strategy_name": "ev_lever_targeted_outreach",
+        "outreach_fraction": 0.9,
+        "min_score_cutoff": -34.65244183757711,
+        "targeted_clients": 9000,
+        "expected_saved_clients": 227.5,
+        "gross_clv_saved_eur": 669744.1027724964,
+        "campaign_cost_eur": 369370.0,
+        "net_roi_eur": 300374.1027724964,
+        "roi_pct": 81.32065483728955
+      },
+      {
+        "strategy_name": "random_outreach",
+        "outreach_fraction": 0.95,
+        "min_score_cutoff": 0.0,
+        "targeted_clients": 9500,
+        "expected_saved_clients": 235.14400000000003,
+        "gross_clv_saved_eur": 641982.42978774,
+        "campaign_cost_eur": 391542.5,
+        "net_roi_eur": 250439.92978774,
+        "roi_pct": 63.96238717067496
+      },
+      {
+        "strategy_name": "risk_ranked_outreach",
+        "outreach_fraction": 0.95,
+        "min_score_cutoff": 0.012338404303410103,
+        "targeted_clients": 9500,
+        "expected_saved_clients": 247.16999999999996,
+        "gross_clv_saved_eur": 675538.7840701302,
+        "campaign_cost_eur": 394650.0,
+        "net_roi_eur": 280888.7840701302,
+        "roi_pct": 71.17415027749404
+      },
+      {
+        "strategy_name": "ev_lever_targeted_outreach",
+        "outreach_fraction": 0.95,
+        "min_score_cutoff": -34.803138649851824,
+        "targeted_clients": 9500,
+        "expected_saved_clients": 228.07,
+        "gross_clv_saved_eur": 669896.5383911522,
+        "campaign_cost_eur": 386920.0,
+        "net_roi_eur": 282976.53839115216,
+        "roi_pct": 73.13567104082294
+      },
+      {
+        "strategy_name": "random_outreach",
+        "outreach_fraction": 1.0,
+        "min_score_cutoff": 0.0,
+        "targeted_clients": 10000,
+        "expected_saved_clients": 247.52000000000004,
+        "gross_clv_saved_eur": 675770.9787239368,
+        "campaign_cost_eur": 412150.0,
+        "net_roi_eur": 263620.97872393683,
+        "roi_pct": 63.96238717067496
+      },
+      {
+        "strategy_name": "risk_ranked_outreach",
+        "outreach_fraction": 1.0,
+        "min_score_cutoff": 0.0030687190417842732,
+        "targeted_clients": 10000,
+        "expected_saved_clients": 247.51999999999995,
+        "gross_clv_saved_eur": 675770.9787239367,
+        "campaign_cost_eur": 412150.0,
+        "net_roi_eur": 263620.9787239367,
+        "roi_pct": 63.96238717067493
+      },
+      {
+        "strategy_name": "ev_lever_targeted_outreach",
+        "outreach_fraction": 1.0,
+        "min_score_cutoff": -65.62826187563934,
+        "targeted_clients": 10000,
+        "expected_saved_clients": 247.52,
+        "gross_clv_saved_eur": 675770.9787239367,
+        "campaign_cost_eur": 412150.0,
+        "net_roi_eur": 263620.9787239367,
+        "roi_pct": 63.96238717067493
+      }
+    ],
+    "sensitivity_grid": [
+      {
+        "base_save_rate": 0.1,
+        "offer_cost_eur": 30.0,
+        "optimal_net_roi_eur": 172145.27943672135,
+        "optimal_fraction": 0.15
+      },
+      {
+        "base_save_rate": 0.1,
+        "offer_cost_eur": 45.0,
+        "optimal_net_roi_eur": 149645.27943672135,
+        "optimal_fraction": 0.15
+      },
+      {
+        "base_save_rate": 0.1,
+        "offer_cost_eur": 60.0,
+        "optimal_net_roi_eur": 127145.27943672148,
+        "optimal_fraction": 0.15
+      },
+      {
+        "base_save_rate": 0.1,
+        "offer_cost_eur": 75.0,
+        "optimal_net_roi_eur": 111791.91902846357,
+        "optimal_fraction": 0.1
+      },
+      {
+        "base_save_rate": 0.1,
+        "offer_cost_eur": 90.0,
+        "optimal_net_roi_eur": 96791.91902846357,
+        "optimal_fraction": 0.1
+      },
+      {
+        "base_save_rate": 0.1,
+        "offer_cost_eur": 120.0,
+        "optimal_net_roi_eur": 66791.91902846366,
+        "optimal_fraction": 0.1
+      },
+      {
+        "base_save_rate": 0.1,
+        "offer_cost_eur": 150.0,
+        "optimal_net_roi_eur": 51015.01220094649,
+        "optimal_fraction": 0.05
+      },
+      {
+        "base_save_rate": 0.15,
+        "offer_cost_eur": 30.0,
+        "optimal_net_roi_eur": 284376.5941131682,
+        "optimal_fraction": 0.2
+      },
+      {
+        "base_save_rate": 0.15,
+        "offer_cost_eur": 45.0,
+        "optimal_net_roi_eur": 258217.91915508217,
+        "optimal_fraction": 0.15
+      },
+      {
+        "base_save_rate": 0.15,
+        "offer_cost_eur": 60.0,
+        "optimal_net_roi_eur": 235717.91915508217,
+        "optimal_fraction": 0.15
+      },
+      {
+        "base_save_rate": 0.15,
+        "offer_cost_eur": 75.0,
+        "optimal_net_roi_eur": 213217.91915508223,
+        "optimal_fraction": 0.15
+      },
+      {
+        "base_save_rate": 0.15,
+        "offer_cost_eur": 90.0,
+        "optimal_net_roi_eur": 190717.91915508223,
+        "optimal_fraction": 0.15
+      },
+      {
+        "base_save_rate": 0.15,
+        "offer_cost_eur": 120.0,
+        "optimal_net_roi_eur": 160187.8785426952,
+        "optimal_fraction": 0.1
+      },
+      {
+        "base_save_rate": 0.15,
+        "offer_cost_eur": 150.0,
+        "optimal_net_roi_eur": 130187.87854269547,
+        "optimal_fraction": 0.1
+      },
+      {
+        "base_save_rate": 0.2,
+        "offer_cost_eur": 30.0,
+        "optimal_net_roi_eur": 402162.11153969815,
+        "optimal_fraction": 0.25
+      },
+      {
+        "base_save_rate": 0.2,
+        "offer_cost_eur": 45.0,
+        "optimal_net_roi_eur": 369168.7921508915,
+        "optimal_fraction": 0.2
+      },
+      {
+        "base_save_rate": 0.2,
+        "offer_cost_eur": 60.0,
+        "optimal_net_roi_eur": 344290.5588734427,
+        "optimal_fraction": 0.15
+      },
+      {
+        "base_save_rate": 0.2,
+        "offer_cost_eur": 75.0,
+        "optimal_net_roi_eur": 321790.5588734427,
+        "optimal_fraction": 0.15
+      },
+      {
+        "base_save_rate": 0.2,
+        "offer_cost_eur": 90.0,
+        "optimal_net_roi_eur": 299290.5588734427,
+        "optimal_fraction": 0.15
+      },
+      {
+        "base_save_rate": 0.2,
+        "offer_cost_eur": 120.0,
+        "optimal_net_roi_eur": 254290.55887344296,
+        "optimal_fraction": 0.15
+      },
+      {
+        "base_save_rate": 0.2,
+        "offer_cost_eur": 150.0,
+        "optimal_net_roi_eur": 223583.83805692714,
+        "optimal_fraction": 0.1
+      },
+      {
+        "base_save_rate": 0.25,
+        "offer_cost_eur": 30.0,
+        "optimal_net_roi_eur": 523505.09382825776,
+        "optimal_fraction": 0.3
+      },
+      {
+        "base_save_rate": 0.25,
+        "offer_cost_eur": 45.0,
+        "optimal_net_roi_eur": 483960.990188615,
+        "optimal_fraction": 0.2
+      },
+      {
+        "base_save_rate": 0.25,
+        "offer_cost_eur": 60.0,
+        "optimal_net_roi_eur": 453960.990188615,
+        "optimal_fraction": 0.2
+      },
+      {
+        "base_save_rate": 0.25,
+        "offer_cost_eur": 75.0,
+        "optimal_net_roi_eur": 430363.19859180413,
+        "optimal_fraction": 0.15
+      },
+      {
+        "base_save_rate": 0.25,
+        "offer_cost_eur": 90.0,
+        "optimal_net_roi_eur": 407863.198591804,
+        "optimal_fraction": 0.15
+      },
+      {
+        "base_save_rate": 0.25,
+        "offer_cost_eur": 120.0,
+        "optimal_net_roi_eur": 362863.1985918039,
+        "optimal_fraction": 0.15
+      },
+      {
+        "base_save_rate": 0.25,
+        "offer_cost_eur": 150.0,
+        "optimal_net_roi_eur": 317863.19859180384,
+        "optimal_fraction": 0.15
+      },
+      {
+        "base_save_rate": 0.3,
+        "offer_cost_eur": 30.0,
+        "optimal_net_roi_eur": 648755.4814690106,
+        "optimal_fraction": 0.35
+      },
+      {
+        "base_save_rate": 0.3,
+        "offer_cost_eur": 45.0,
+        "optimal_net_roi_eur": 603243.1673095461,
+        "optimal_fraction": 0.25
+      },
+      {
+        "base_save_rate": 0.3,
+        "offer_cost_eur": 60.0,
+        "optimal_net_roi_eur": 568753.1882263364,
+        "optimal_fraction": 0.2
+      },
+      {
+        "base_save_rate": 0.3,
+        "offer_cost_eur": 75.0,
+        "optimal_net_roi_eur": 538935.8383101636,
+        "optimal_fraction": 0.15
+      },
+      {
+        "base_save_rate": 0.3,
+        "offer_cost_eur": 90.0,
+        "optimal_net_roi_eur": 516435.83831016434,
+        "optimal_fraction": 0.15
+      },
+      {
+        "base_save_rate": 0.3,
+        "offer_cost_eur": 120.0,
+        "optimal_net_roi_eur": 471435.83831016434,
+        "optimal_fraction": 0.15
+      },
+      {
+        "base_save_rate": 0.3,
+        "offer_cost_eur": 150.0,
+        "optimal_net_roi_eur": 426435.83831016446,
+        "optimal_fraction": 0.15
+      },
+      {
+        "base_save_rate": 0.35,
+        "offer_cost_eur": 30.0,
+        "optimal_net_roi_eur": 774381.3950471808,
+        "optimal_fraction": 0.35
+      },
+      {
+        "base_save_rate": 0.35,
+        "offer_cost_eur": 45.0,
+        "optimal_net_roi_eur": 723907.1313595612,
+        "optimal_fraction": 0.3
+      },
+      {
+        "base_save_rate": 0.35,
+        "offer_cost_eur": 60.0,
+        "optimal_net_roi_eur": 685033.6951944722,
+        "optimal_fraction": 0.25
+      },
+      {
+        "base_save_rate": 0.35,
+        "offer_cost_eur": 75.0,
+        "optimal_net_roi_eur": 653545.38626406,
+        "optimal_fraction": 0.2
+      },
+      {
+        "base_save_rate": 0.35,
+        "offer_cost_eur": 90.0,
+        "optimal_net_roi_eur": 625008.4780285249,
+        "optimal_fraction": 0.15
+      },
+      {
+        "base_save_rate": 0.35,
+        "offer_cost_eur": 120.0,
+        "optimal_net_roi_eur": 580008.4780285249,
+        "optimal_fraction": 0.15
+      },
+      {
+        "base_save_rate": 0.35,
+        "offer_cost_eur": 150.0,
+        "optimal_net_roi_eur": 535008.478028525,
+        "optimal_fraction": 0.15
+      },
+      {
+        "base_save_rate": 0.4,
+        "offer_cost_eur": 30.0,
+        "optimal_net_roi_eur": 901427.1427731129,
+        "optimal_fraction": 0.45
+      },
+      {
+        "base_save_rate": 0.4,
+        "offer_cost_eur": 45.0,
+        "optimal_net_roi_eur": 847507.3086253493,
+        "optimal_fraction": 0.35
+      },
+      {
+        "base_save_rate": 0.4,
+        "offer_cost_eur": 60.0,
+        "optimal_net_roi_eur": 804324.2230793963,
+        "optimal_fraction": 0.25
+      },
+      {
+        "base_save_rate": 0.4,
+        "offer_cost_eur": 75.0,
+        "optimal_net_roi_eur": 768337.5843017834,
+        "optimal_fraction": 0.2
+      },
+      {
+        "base_save_rate": 0.4,
+        "offer_cost_eur": 90.0,
+        "optimal_net_roi_eur": 738337.584301783,
+        "optimal_fraction": 0.2
+      },
+      {
+        "base_save_rate": 0.4,
+        "offer_cost_eur": 120.0,
+        "optimal_net_roi_eur": 688581.1177468854,
+        "optimal_fraction": 0.15
+      },
+      {
+        "base_save_rate": 0.4,
+        "offer_cost_eur": 150.0,
+        "optimal_net_roi_eur": 643581.1177468854,
+        "optimal_fraction": 0.15
+      }
+    ]
+  },
+  "hyperparameters": {
+    "lr_c": 1.0,
+    "lr_max_iter": 1000,
+    "lgbm_n_estimators": 350,
+    "lgbm_learning_rate": 0.03,
+    "lgbm_num_leaves": 15,
+    "lgbm_max_depth": 4,
+    "lgbm_min_child_samples": 40,
+    "lgbm_subsample": 0.8,
+    "lgbm_colsample_bytree": 0.8,
+    "lgbm_reg_alpha": 1.0,
+    "lgbm_reg_lambda": 5.0,
+    "xgb_n_estimators": 350,
+    "xgb_learning_rate": 0.03,
+    "xgb_max_depth": 4,
+    "xgb_min_child_weight": 10.0,
+    "xgb_subsample": 0.8,
+    "xgb_colsample_bytree": 0.8,
+    "xgb_reg_alpha": 1.0,
+    "xgb_reg_lambda": 5.0,
+    "cat_iterations": 500,
+    "cat_learning_rate": 0.04,
+    "cat_depth": 5,
+    "cat_l2_leaf_reg": 6.0
+  },
+  "figures": [
+    "bccri_leakage_audit_shap.png",
+    "bccri_actionable_segments.png",
+    "bccri_retention_roi_simulation.png"
+  ]
+}
