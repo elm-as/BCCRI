@@ -9,6 +9,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
+from src.core.churn_config import FeaturePartitionConfig
 from src.core.churn_contracts import DashboardPayload
 from src.modeling.probability_calibrator import compute_reliability_bins
 
@@ -21,9 +22,7 @@ PALETTE_BG = "#F8FAFC"
 PALETTE_INK = "#0F172A"
 PALETTE_GRID = "#CBD5E1"
 
-ACTIONABLE_SET = frozenset(
-    {"IsActiveMember", "NumOfProducts", "Balance", "HasCrCard", "Card Type", "Point Earned"}
-)
+ACTIONABLE_SET = frozenset(FeaturePartitionConfig().actionable_lever_columns)
 
 
 def _apply_axis_style(ax: plt.Axes, title: str) -> None:
@@ -183,7 +182,7 @@ def _render_retention_roi_figure(payload: DashboardPayload, output_path: Path) -
     )
     ax_left.set_xlabel("Outreach Budget Fraction (% of Portfolio)", color=PALETTE_INK, fontsize=10)
     ax_left.set_ylabel("Net Retention ROI (Thousand EUR)", color=PALETTE_INK, fontsize=10)
-    ax_left.legend(loc="lower left", fontsize=8.5, frameon=True)
+    ax_left.legend(loc="lower right", fontsize=8.5, frameon=True)
     _apply_axis_style(ax_left, "A. Retention Campaign Net ROI by Targeting Strategy")
 
     grid = payload.simulation_summary.sensitivity_grid

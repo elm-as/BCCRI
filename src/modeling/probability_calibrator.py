@@ -15,12 +15,15 @@ from src.core.churn_config import ValidationConfig
 
 def _validate_probability_vectors(y_true: np.ndarray, y_prob: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     """Validate binary labels and probability arrays without mutating inputs."""
-    labels = np.asarray(y_true, dtype=int)
+    labels_raw = np.asarray(y_true, dtype=float)
     probs = np.asarray(y_prob, dtype=float)
-    if labels.ndim != 1 or probs.ndim != 1 or len(labels) != len(probs):
+    if labels_raw.ndim != 1 or probs.ndim != 1 or len(labels_raw) != len(probs):
         raise ValueError("y_true and y_prob must be 1D arrays of equal length.")
-    if len(labels) == 0:
+    if len(labels_raw) == 0:
         raise ValueError("Cannot compute calibration metrics on empty arrays.")
+    if not np.isfinite(labels_raw).all() or not np.isfinite(probs).all():
+        raise ValueError("y_true and y_prob must contain only finite values (no NaN or Inf).")
+    labels = labels_raw.astype(int)
     clipped = np.clip(probs, 0.0, 1.0)
     return labels, clipped
 

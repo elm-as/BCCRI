@@ -15,7 +15,12 @@ from src.core.churn_contracts import ChurnDatasetBundle, LeakageAuditRow
 def _encode_series_for_audit(series: pd.Series) -> np.ndarray:
     """Convert numeric or categorical series into finite numeric array without mutating."""
     if pd.api.types.is_numeric_dtype(series):
-        return series.to_numpy(dtype=float)
+        arr = series.to_numpy(dtype=float, na_value=np.nan, copy=True)
+        finite_mask = np.isfinite(arr)
+        if np.all(finite_mask):
+            return arr
+        fill_value = float(np.median(arr[finite_mask])) if np.any(finite_mask) else 0.0
+        return np.where(finite_mask, arr, fill_value)
     codes, _ = pd.factorize(series.astype(str), sort=True)
     return codes.astype(float)
 
@@ -90,15 +95,20 @@ def audit_target_leakage(
     for col in candidates:
         values = _encode_series_for_audit(df[col])
         std_val = float(np.std(values))
-        pearson_r = 0.0 if std_val == 0.0 else float(np.corrcoef(values, target)[0, 1])
-        mi_score = float(
-            mutual_info_classif(
-                values.reshape(-1, 1),
-                target,
-                random_state=val_config.random_seed,
-            )[0]
+        is_constant = std_val == 0.0 or not np.isfinite(std_val)
+        pearson_r = 0.0 if is_constant else float(np.corrcoef(values, target)[0, 1])
+        mi_score = (
+            0.0
+            if is_constant
+            else float(
+                mutual_info_classif(
+                    values.reshape(-1, 1),
+                    target,
+                    random_state=val_config.random_seed,
+                )[0]
+            )
         )
-        uni_auc = 0.5 if std_val == 0.0 else _compute_univariate_cv_auc(values, target, val_config)
+        uni_auc = 0.5 if is_constant else _compute_univariate_cv_auc(values, target, val_config)
         flagged, disposition = _classify_feature_disposition(
             col,
             (abs(pearson_r), uni_auc),

@@ -10,7 +10,7 @@ import shap
 from lightgbm import LGBMClassifier
 from sklearn.model_selection import StratifiedKFold
 
-from src.core.churn_config import ChurnPipelineConfig, ValidationConfig
+from src.core.churn_config import ChurnPipelineConfig, FeaturePartitionConfig, ValidationConfig
 from src.core.churn_contracts import ShapLeverProfile
 from src.features.churn_feature_pipeline import encode_categorical_fold
 
@@ -170,9 +170,9 @@ def assign_crm_segments(
         raise ValueError("calibrated_probs length must match features_df row count.")
 
     out_df = features_df.copy().reset_index(drop=True)
+    actionable_cols = frozenset(FeaturePartitionConfig().actionable_lever_columns)
     act_mask = np.array(
-        [name in ("IsActiveMember", "NumOfProducts", "Balance", "HasCrCard", "Card Type", "Point Earned")
-         for name in shap_profile.feature_names],
+        [name in actionable_cols for name in shap_profile.feature_names],
         dtype=bool,
     )
     abs_shap = np.abs(shap_profile.shap_matrix)

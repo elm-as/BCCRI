@@ -8,6 +8,7 @@ import plotly.graph_objects as go
 from plotly.io import to_html
 from plotly.subplots import make_subplots
 
+from src.core.churn_config import FeaturePartitionConfig
 from src.core.churn_contracts import DashboardPayload
 
 NAVY = "#0F2942"
@@ -16,9 +17,7 @@ AMBER = "#B45309"
 CRIMSON = "#B91C1C"
 SLATE = "#64748B"
 
-ACTIONABLE_SET = frozenset(
-    {"IsActiveMember", "NumOfProducts", "Balance", "HasCrCard", "Card Type", "Point Earned"}
-)
+ACTIONABLE_SET = frozenset(FeaturePartitionConfig().actionable_lever_columns)
 
 
 def _build_plotly_ablation_and_shap(payload: DashboardPayload) -> str:
@@ -60,7 +59,7 @@ def _build_plotly_ablation_and_shap(payload: DashboardPayload) -> str:
         col=2,
     )
     fig.update_layout(template="plotly_white", height=420, margin={"t": 50, "b": 40, "l": 120, "r": 30})
-    return to_html(fig, full_html=False, include_plotlyjs="cdn")
+    return to_html(fig, full_html=False, include_plotlyjs="cdn", div_id="bccri-leakage-shap")
 
 
 def _build_plotly_roi_and_sensitivity(payload: DashboardPayload) -> str:
@@ -114,7 +113,7 @@ def _build_plotly_roi_and_sensitivity(payload: DashboardPayload) -> str:
     fig.update_xaxes(title_text="Offer Cost (EUR)", row=1, col=2)
     fig.update_yaxes(title_text="Anchor Save Rate", row=1, col=2)
     fig.update_layout(template="plotly_white", height=440, margin={"t": 50, "b": 50, "l": 60, "r": 30})
-    return to_html(fig, full_html=False, include_plotlyjs=False)
+    return to_html(fig, full_html=False, include_plotlyjs=False, div_id="bccri-segments-roi")
 
 
 def _format_segment_rows_html(payload: DashboardPayload) -> str:
