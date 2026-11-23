@@ -1,6 +1,6 @@
 <div align="center">
 
-# BCCRI — Bank Customer Churn & Retention Intelligence
+# BCCRI - Bank Customer Churn & Retention Intelligence
 ### Leak-Free Stratified CV, OOF Actionable SHAP Levers & Unit-Economics Retention ROI
 
 <br/>
@@ -206,10 +206,10 @@ Out-of-fold `shap.TreeExplainer` attributions verify that **52.22%** of total pr
 
 ## Retention ROI Simulation & Sensitivity
 
-Using a 2-year discounted CLV proxy (`1.50%` NIM on `Balance` + `0.25%` fee proxy on `EstimatedSalary`, `8%` discount rate, `250 EUR` floor) and segment-differentiated save elasticities (`8%` structural vs `22%–28%` actionable):
+Using a 2-year discounted CLV proxy (`1.50%` NIM on `Balance` + `0.25%` fee proxy on `EstimatedSalary`, `8%` discount rate, `250 EUR` floor) and segment-differentiated save elasticities (`8%` structural vs `22%-28%` actionable):
 
 - **EV / Lever-Targeted Outreach** peaks at **`f* = 25%`** (`2,500` targeted clients), saving an expected **`179.9` clients** (`594,455 EUR` gross CLV saved vs `134,440 EUR` campaign cost) for a net gain of **`+460,015 EUR` (`342.2%` ROI)**.
-- **Pure Risk-Ranked Outreach** peaks at `f = 30%` with `+440,087 EUR` — **`EV / Lever-Targeted` delivers `+19,929 EUR` incremental net profit** while cutting campaign outreach volume by 5 percentage points.
+- **Pure Risk-Ranked Outreach** peaks at `f = 30%` with `+440,087 EUR` - **`EV / Lever-Targeted` delivers `+19,929 EUR` incremental net profit** while cutting campaign outreach volume by 5 percentage points.
 - **Random Outreach** at `f* = 25%` returns only `+65,905 EUR` (`+394,110 EUR` net advantage to EV-targeted prioritization).
 
 <div align="center">
@@ -299,4 +299,4 @@ BCCRI/
 
 ---
 
-*Author: **Elmas** (`elm-as`) — ElmasCore Data Science Portfolio*
+*Author: **Elmas** (`elm-as`) - ElmasCore Data Science Portfolio*
